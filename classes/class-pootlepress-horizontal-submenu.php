@@ -231,6 +231,24 @@ class Pootlepress_Horizontal_Submenu {
             $css .= "}\n";
         }
 
+        $centerExtension = 'pootlepress-center-menu-n-logo';
+        // center menu and logo extension compability
+        $centerPrimaryNavEnabled	= get_option($centerExtension."_center-navigation-option");
+
+        if ($centerPrimaryNavEnabled == 'true') {
+            $css .= "#navigation ul.nav {\n";
+            $css .= "\t" . 'text-align: center; float: none;' . "\n";
+            $css .= "}\n";
+
+            $css .= "#navigation ul.nav > li {\n";
+            $css .= "\t" . 'display: inline-block; float: none;' . "\n";
+            $css .= "}\n";
+
+            $css .= "#navigation ul.nav > li > .sub-menu > li {\n";
+            $css .= "\t" . 'float: none;' . "\n";
+            $css .= "}\n";
+        }
+
         $css .= "}\n";//close media query
 
 
