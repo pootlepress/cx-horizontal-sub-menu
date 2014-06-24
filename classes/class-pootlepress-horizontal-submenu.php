@@ -245,11 +245,21 @@ class Pootlepress_Horizontal_Submenu {
             $css .= "}\n";
         }
 
+
+        $all_plugins = get_plugins();
+        $isCenterMenuActivated = false;
+        foreach ( $all_plugins as $k => $v )
+            if ( substr( $k, 0, 23) == 'cx-center-menu-and-logo') {
+                if ( is_plugin_active($k)) {
+                    $isCenterMenuActivated = true;
+                }
+            }
+
         $centerExtension = 'pootlepress-center-menu-n-logo';
         // center menu and logo extension compability
         $centerPrimaryNavEnabled	= get_option($centerExtension."_center-navigation-option");
 
-        if ($centerPrimaryNavEnabled == 'true') {
+        if ($isCenterMenuActivated && $centerPrimaryNavEnabled == 'true') {
             $css .= "#navigation ul.nav {\n";
             $css .= "\t" . 'text-align: center; float: none;' . "\n";
             $css .= "}\n";
