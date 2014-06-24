@@ -36,6 +36,7 @@ class Pootlepress_Horizontal_Submenu {
 	public $version;
 	private $file;
 
+    private $enabled;
     private $bgColor;
     private $fontStyle;
     private $divider;
@@ -68,6 +69,8 @@ class Pootlepress_Horizontal_Submenu {
         add_action( 'wp_enqueue_scripts', array( &$this, 'load_script' ) );
 
         add_action('wp_head', array(&$this, 'option_css'), 100);
+
+        $this->enabled = get_option('pootlepress-horizontal-submenu-enabled', 'true') == 'true';
 
         $this->bgColor = get_option('pootlepress-horizontal-submenu-bg-color', '');
         $this->fontStyle = get_option('pootlepress-horizontal-submenu-font',
@@ -102,6 +105,13 @@ class Pootlepress_Horizontal_Submenu {
 				'type' => 'subheading'
 		);
 
+        $o[] = array(
+            'id' => 'pootlepress-horizontal-submenu-enabled',
+            'name' => 'Enable Horizontal Submenu',
+            'desc' => 'Enable Horizontal Submenu',
+            'type' => 'checkbox',
+            'std' => 'true'
+        );
         $o[] = array(
             'id' => 'pootlepress-horizontal-submenu-bg-color',
             'name' => 'Background Color',
@@ -159,6 +169,10 @@ class Pootlepress_Horizontal_Submenu {
 	} // End add_theme_options()
 
     public function option_css() {
+
+        if ($this->enabled == false) {
+            return;
+        }
 
         $css = '';
 
@@ -222,11 +236,11 @@ class Pootlepress_Horizontal_Submenu {
         $css .= "}\n";
 
         if ($this->hoverColor != '') {
-            $css .= "#navigation ul.nav li.current-menu-item > a > span {\n";
+            $css .= "#navigation ul.nav .sub-menu li.current-menu-item > a > span {\n";
             $css .= "\t" . 'color: ' . $this->hoverColor . " !important;\n";
             $css .= "}\n";
 
-            $css .= "#navigation ul.nav li:hover > a > span {\n";
+            $css .= "#navigation ul.nav .sub-menu li:hover > a > span {\n";
             $css .= "\t" . 'color: ' . $this->hoverColor . " !important;\n";
             $css .= "}\n";
         }
@@ -281,6 +295,11 @@ class Pootlepress_Horizontal_Submenu {
     }
 
     public function get_header () {
+
+        if ($this->enabled == false) {
+            return;
+        }
+
         remove_action('woo_nav_inside', 'woo_nav_primary', 10); // this is added by canvas
 
         add_action( 'woo_nav_inside', array(&$this, 'woo_nav_custom'), 10 );
@@ -288,8 +307,12 @@ class Pootlepress_Horizontal_Submenu {
 
     public function load_script()
     {
+        if ($this->enabled == false) {
+            return;
+        }
+
         $pluginFile = dirname(dirname(__FILE__)) . '/pootlepress-horizontal-submenu.php';
-        wp_enqueue_script('pootlepress-featured-video', plugin_dir_url($pluginFile) . 'scripts/horizontal-submenu.js', array('jquery'));
+        wp_enqueue_script('pootlepress-horizontal-submenu', plugin_dir_url($pluginFile) . 'scripts/horizontal-submenu.js', array('jquery'));
     }
 
     public function woo_nav_custom() {
