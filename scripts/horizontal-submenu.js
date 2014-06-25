@@ -6,6 +6,23 @@
 
     $(document).ready(function () {
 
+
+        $('#navigation ul.nav > .menu-item').each(function () {
+            $(this).hover(function () {
+                var $subMenu = $(this).find('.sub-menu');
+                if ($subMenu.length > 0 && $subMenu.find('.current-menu-item').length == 0) {
+                    $subMenu.show();
+                    $subMenu.css('visibility', 'visible');
+                }
+            }, function () {
+                var $subMenu = $(this).find('.sub-menu');
+                if ($subMenu.length > 0 && $subMenu.find('.current-menu-item').length == 0) {
+                    $subMenu.hide();
+                    $subMenu.css('visibility', 'hidden');
+                }
+            });
+        });
+
         var navHeight = $('#navigation').outerHeight(false);
 
         var navBorderTop = $('#navigation').css('border-top-width');
@@ -66,6 +83,9 @@
                 $(this).width(newWidth);
 
                 // have to show this element, so jquery can return its offset correctly
+                var initialDisplay = $(this).css('display');
+                var initialVisibility = $(this).css('visibility');
+
                 $(this).css('visibility', 'hidden');
                 $(this).show();
 
@@ -81,12 +101,13 @@
 
                 $(this).attr('style', function(i,s) { return s + 'left: ' + newLeft + 'px !important;' });
 
-                $(this).css('display', '');
-                $(this).css('visibility', '');
+                $(this).css('display', initialDisplay);
+                $(this).css('visibility', initialVisibility);
 
 
-                var $li = $(this).closest('li');
-                var topItemOffset = $li.offset();
+                var $nav = $(this).closest('ul.nav');
+                var $firstTopItem = $nav.find('> .menu-item:first-child');
+                var topItemOffset = $firstTopItem.offset();
 
                 var submenuBorderLeftWidth = $(this).css('border-left-width');
                 submenuBorderLeftWidth = convertPixelValue(submenuBorderLeftWidth);
