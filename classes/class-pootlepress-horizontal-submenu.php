@@ -199,7 +199,7 @@ class Pootlepress_Horizontal_Submenu {
         // bg color
         if ($this->bgColor != '') {
             $css .= "#navigation ul.nav > li > .sub-menu  {\n";
-            $css .= "\t" . 'background-color: ' . $this->bgColor . ";\n";
+            $css .= "\t" . 'background-color: ' . $this->bgColor . " !important;\n";
             $css .= "}\n";
         }
 

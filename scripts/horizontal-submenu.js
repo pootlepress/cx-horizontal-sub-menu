@@ -83,6 +83,17 @@
 
                 $(this).css('display', '');
                 $(this).css('visibility', '');
+
+
+                var $li = $(this).closest('li');
+                var topItemOffset = $li.offset();
+
+                var submenuBorderLeftWidth = $(this).css('border-left-width');
+                submenuBorderLeftWidth = convertPixelValue(submenuBorderLeftWidth);
+
+                var paddingLeft = topItemOffset.left - submenuBorderLeftWidth;
+                paddingLeft = paddingLeft + 'px';
+                $(this).css('padding-left', paddingLeft);
             });
         }
     }
