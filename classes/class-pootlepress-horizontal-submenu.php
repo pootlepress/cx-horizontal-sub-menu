@@ -326,6 +326,17 @@ class Pootlepress_Horizontal_Submenu {
 
         $pluginFile = dirname(dirname(__FILE__)) . '/pootlepress-horizontal-submenu.php';
         wp_enqueue_script('pootlepress-horizontal-submenu', plugin_dir_url($pluginFile) . 'scripts/horizontal-submenu.js', array('jquery'));
+
+        if (isset($GLOBALS['pootlepress_center_mnl'])) {
+            // if center menu and logo is activated
+            // check if primary nav is center
+            $nameprefix = 'pootlepress-center-menu-n-logo';
+            $_center_pri_nav_enabled	= get_option($nameprefix."_center-navigation-option") == 'true';
+            if ($_center_pri_nav_enabled) {
+                wp_localize_script('pootlepress-horizontal-submenu', 'PHS', array('isPrimaryNavCentered' => true));
+            }
+        }
+
     }
 
     public function woo_nav_custom() {

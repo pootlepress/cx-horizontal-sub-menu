@@ -105,16 +105,21 @@
                 $(this).css('visibility', initialVisibility);
 
 
-                var $nav = $(this).closest('ul.nav');
-                var $firstTopItem = $nav.find('> .menu-item:first-child');
-                var topItemOffset = $firstTopItem.offset();
+                if (typeof PHS != 'undefined' && PHS != null && PHS.isPrimaryNavCentered) {
+                    // don't set padding left
+                } else {
+                    var $nav = $(this).closest('ul.nav');
+                    var $firstTopItem = $nav.find('> .menu-item:first-child');
+                    var topItemOffset = $firstTopItem.offset();
 
-                var submenuBorderLeftWidth = $(this).css('border-left-width');
-                submenuBorderLeftWidth = convertPixelValue(submenuBorderLeftWidth);
+                    var submenuBorderLeftWidth = $(this).css('border-left-width');
+                    submenuBorderLeftWidth = convertPixelValue(submenuBorderLeftWidth);
 
-                var paddingLeft = topItemOffset.left - submenuBorderLeftWidth;
-                paddingLeft = paddingLeft + 'px';
-                $(this).css('padding-left', paddingLeft);
+                    var paddingLeft = topItemOffset.left - submenuBorderLeftWidth;
+                    paddingLeft = paddingLeft + 'px';
+                    $(this).css('padding-left', paddingLeft);
+                }
+
             });
         }
     }
