@@ -8,4 +8,6 @@ Instructions
 
 Versions
 
+v1.0.1 -Add compat with Center Menu and Logo with Full Width
+
 v1.0 - Initial release
