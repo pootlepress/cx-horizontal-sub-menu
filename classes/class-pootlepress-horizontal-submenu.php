@@ -67,7 +67,7 @@ class Pootlepress_Horizontal_Submenu {
 		// Add the custom theme options.
 		add_filter( 'option_woo_template', array( &$this, 'add_theme_options' ) );
 
-        add_action( 'get_header', array( &$this, 'get_header' ) , 1000);
+        add_action( 'get_header', array( &$this, 'get_header' ) , 1001);
 
         add_action( 'wp_enqueue_scripts', array( &$this, 'load_script' ) );
 
@@ -313,9 +313,11 @@ class Pootlepress_Horizontal_Submenu {
             return;
         }
 
-        remove_action('woo_nav_inside', 'woo_nav_primary', 10); // this is added by canvas
+        if (!class_exists('Pootlepress_FontAwesome_Menu')) {
+            remove_action('woo_nav_inside', 'woo_nav_primary', 10); // this is added by canvas
 
-        add_action( 'woo_nav_inside', array(&$this, 'woo_nav_custom'), 10 );
+            add_action( 'woo_nav_inside', array(&$this, 'woo_nav_custom'), 10 );
+        }
     }
 
     public function load_script()
