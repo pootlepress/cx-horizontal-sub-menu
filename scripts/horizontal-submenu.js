@@ -72,15 +72,19 @@
 
             $('#navigation .sub-menu').each(function () {
 
+                $(this).css('box-sizing', 'border-box');
+
                 var borderLeftWidth = $(this).css('border-left-width');
                 borderLeftWidth = convertPixelValue(borderLeftWidth);
 
                 var borderRightWidth = $(this).css('border-right-width');
                 borderRightWidth = convertPixelValue(borderRightWidth);
 
-                var newWidth = windowWidth - borderLeftWidth - borderRightWidth;
+//                var newWidth = windowWidth;
+                var newWidth = $('#header-container').width();
+                console.log('Header container width: ' + newWidth);
 
-                $(this).width(newWidth);
+                $(this).css('width', newWidth + 'px');
 
                 // have to show this element, so jquery can return its offset correctly
                 var initialDisplay = $(this).css('display');
