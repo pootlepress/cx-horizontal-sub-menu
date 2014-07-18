@@ -196,6 +196,18 @@ class Pootlepress_Horizontal_Submenu {
         $css .= "\t" . 'text-decoration: none;' . "\n";
         $css .= "}\n";
 
+        $css .= "#navigation .side-nav {\n";
+        $css .= "\t" . 'position: absolute; right: 0; top: 0;' . "\n";
+        $css .= "}\n";
+
+        $css .= "#navigation ul.cart .cart-contents {\n";
+        $css .= "\t" . 'width: auto;' . "\n";
+        $css .= "}\n";
+
+        $css .= "#navigation ul.cart .widget_shopping_cart {\n";
+        $css .= "\t" . 'padding: 10px;' . "\n";
+        $css .= "}\n";
+
         // bg color
         if ($this->bgColor != '') {
             $css .= "#navigation ul.nav > li > .sub-menu  {\n";
@@ -264,7 +276,7 @@ class Pootlepress_Horizontal_Submenu {
 
         if ($isCenterMenuActivated && $centerPrimaryNavEnabled == 'true') {
             $css .= "#navigation ul.nav {\n";
-            $css .= "\t" . 'text-align: center; float: none;' . "\n";
+            $css .= "\t" . 'text-align: center; float: none; margin-right: 0 !important;' . "\n";
             $css .= "}\n";
 
             $css .= "#navigation ul.nav > li {\n";
