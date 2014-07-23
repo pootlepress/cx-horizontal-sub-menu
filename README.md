@@ -8,6 +8,8 @@ Instructions
 
 Versions
 
+v1.1.1 - fix submenu and icons
+
 v1.1 - Ability to get update notifications & update within WordPress
 
 v1.0.1 -Add compat with Center Menu and Logo with Full Width
