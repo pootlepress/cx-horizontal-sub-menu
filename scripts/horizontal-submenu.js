@@ -13,12 +13,14 @@
                 if ($subMenu.length > 0 && $subMenu.find('.current-menu-item').length == 0) {
                     $subMenu.show();
                     $subMenu.css('visibility', 'visible');
+                    $subMenu.css('z-index', '10000');
                 }
             }, function () {
                 var $subMenu = $(this).find('.sub-menu');
                 if ($subMenu.length > 0 && $subMenu.find('.current-menu-item').length == 0) {
                     $subMenu.hide();
                     $subMenu.css('visibility', 'hidden');
+                    $subMenu.css('z-index', '9999');
                 }
             });
         });
