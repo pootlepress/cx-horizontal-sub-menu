@@ -3,7 +3,7 @@
 Plugin Name: Canvas Extension - Horizontal Sub-menu
 Plugin URI: http://pootlepress.com/
 Description: An extension for WooThemes Canvas that allow you to have horizontal sub-menu.
-Version: 1.1
+Version: 1.1.1
 Author: PootlePress
 Author URI: http://pootlepress.com/
 License: GPL version 2 or later - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
@@ -18,7 +18,7 @@ require_once( 'classes/class-horizontal-submenu-nav-walker.php' );
 require_once( 'classes/class-pootlepress-updater.php');
 
 $GLOBALS['pootlepress_horizontal_submenu'] = new Pootlepress_Horizontal_Submenu( __FILE__ );
-$GLOBALS['pootlepress_horizontal_submenu']->version = '1.1';
+$GLOBALS['pootlepress_horizontal_submenu']->version = '1.1.1';
 
 add_action('init', 'pp_hsm_updater');
 function pp_hsm_updater()
