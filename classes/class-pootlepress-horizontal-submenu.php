@@ -260,6 +260,13 @@ class Pootlepress_Horizontal_Submenu {
             $css .= "}\n";
         }
 
+        // fix search, subscribe and cart icons display under horizontal menu
+        $css .= "#navigation .side-nav .cart ul { z-index: 10001; }\n";
+        $css .= "#navigation .side-nav .rss { z-index: 10001; }\n";
+        $css .= "#navigation .side-nav .nav-search { z-index: 10001; }\n";
+        $css .= "#navigation .side-nav .widget_product_search { padding: 10px; }\n";
+        $css .= "#navigation .side-nav .widget_product_search #s { padding: 10px 35px 10px 10px !important; }\n";
+        $css .= "#navigation .side-nav .widget_product_search button { top: 10px !important; }\n";
 
         $all_plugins = get_plugins();
         $isCenterMenuActivated = false;
@@ -275,8 +282,13 @@ class Pootlepress_Horizontal_Submenu {
         $centerPrimaryNavEnabled	= get_option($centerExtension."_center-navigation-option");
 
         if ($isCenterMenuActivated && $centerPrimaryNavEnabled == 'true') {
+
+            $css .= "#navigation .menus {\n";
+            $css .= "\t" . 'text-align: center;' . "\n";
+            $css .= "}\n";
+
             $css .= "#navigation ul.nav {\n";
-            $css .= "\t" . 'text-align: center; float: none; margin-right: 0 !important;' . "\n";
+            $css .= "\t" . 'text-align: center; float: none; margin-right: 0 !important; display: inline-block; ' . "\n";
             $css .= "}\n";
 
             $css .= "#navigation ul.nav > li {\n";
@@ -286,6 +298,13 @@ class Pootlepress_Horizontal_Submenu {
             $css .= "#navigation ul.nav > li > .sub-menu > li {\n";
             $css .= "\t" . 'float: none;' . "\n";
             $css .= "}\n";
+
+            $css .= "#navigation .side-nav {\n";
+            $css .= "\t" . 'vertical-align: middle !important; position: static !important; display: inline-block !important; width: auto !important;' . "\n";
+            $css .= "}\n";
+
+            $css .= "#navigation .side-nav .rss, #navigation .side-nav .nav-search { float: none; display: inline-block; vertical-align: middle; }\n";
+
         }
 
         $css .= "}\n";//close media query
