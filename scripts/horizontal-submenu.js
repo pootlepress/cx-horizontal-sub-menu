@@ -58,7 +58,6 @@
         $(window).resize(function () {
            setSubMenuWidth();
         });
-
     });
 
     function convertPixelValue(withPx) {
@@ -67,7 +66,7 @@
         return result;
     }
 
-    function setSubMenuWidth() {
+    window.setSubMenuWidth = function() {
         // check if header is full width
         if ($("body").hasClass('full-header')) {
             var windowWidth = $('body').innerWidth();
@@ -111,8 +110,9 @@
                 $(this).css('visibility', initialVisibility);
 
 
-                if (typeof PHS != 'undefined' && PHS != null && PHS.isPrimaryNavCentered) {
-                    // don't set padding left
+                if (typeof StickyHeader2Compat != 'undefined' && StickyHeader2Compat != null && StickyHeader2Compat.isFullHeaderAndAlignRight) {
+
+                } else if (typeof PHS != 'undefined' && PHS != null && PHS.isPrimaryNavCentered) {
                 } else {
                     var $nav = $(this).closest('ul.nav');
                     var $firstTopItem = $nav.find('> .menu-item:first-child');

@@ -358,7 +358,7 @@ class Pootlepress_Horizontal_Submenu {
         }
 
         $pluginFile = dirname(dirname(__FILE__)) . '/pootlepress-horizontal-submenu.php';
-        wp_enqueue_script('pootlepress-horizontal-submenu', plugin_dir_url($pluginFile) . 'scripts/horizontal-submenu.js', array('jquery'));
+        wp_enqueue_script('pootlepress-horizontal-submenu', plugin_dir_url($pluginFile) . 'scripts/horizontal-submenu.js', array('jquery'), 1);
 
         if (isset($GLOBALS['pootlepress_center_mnl'])) {
             // if center menu and logo is activated
@@ -370,6 +370,13 @@ class Pootlepress_Horizontal_Submenu {
             }
         }
 
+        if (class_exists('Pootlepress_Sticky_Header')) {
+            $isAlignMenuRight = get_option('pootlepress-sticky-header-align-right-option', 'false') == 'true';
+            $isFullHeader = get_option('woo_header_full_width', 'false') == 'true';
+            if ($isAlignMenuRight && $isFullHeader) {
+                wp_localize_script('pootlepress-horizontal-submenu', 'StickyHeader2Compat', array('isFullHeaderAndAlignRight' => true));
+            }
+        }
     }
 
     public function woo_nav_custom() {
