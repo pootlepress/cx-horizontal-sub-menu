@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 require_once( 'pootlepress-horizontal-submenu-functions.php' );
 require_once( 'classes/class-pootlepress-horizontal-submenu.php' );
+require_once( 'classes/class-pootlepress-canvas-options.php' );
 require_once( 'classes/class-horizontal-submenu-nav-walker.php' );
 require_once( 'classes/class-pootlepress-updater.php');
 

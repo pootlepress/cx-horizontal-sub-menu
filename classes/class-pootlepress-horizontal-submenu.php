@@ -58,14 +58,13 @@ class Pootlepress_Horizontal_Submenu {
 	public function __construct ( $file ) {
 		$this->file = $file;
 		$this->load_plugin_textdomain();
-		add_action( 'init', 'check_main_heading', 0 );
 		add_action( 'init', array( &$this, 'load_localisation' ), 0 );
 
 		// Run this on activation.
 		register_activation_hook( $file, array( &$this, 'activation' ) );
 
 		// Add the custom theme options.
-		add_filter( 'option_woo_template', array( &$this, 'add_theme_options' ) );
+		$this->add_theme_options();
 
         add_action( 'get_header', array( &$this, 'get_header' ) , 1001);
 
@@ -101,10 +100,17 @@ class Pootlepress_Horizontal_Submenu {
 	 * @since  1.0.0
 	 * @param array $o The array of options, as stored in the database.
 	 */
-	public function add_theme_options ( $o ) {
+	public function add_theme_options (  ) {
+
+        $o = array();
+
+        $o[] = array(
+            'name' => __( 'Horizontal Sub-menu', 'pp-hs' ),
+            'type' => 'heading'
+        );
 
 		$o[] = array(
-				'name' => __( 'Horizontal Sub-menu', 'pp-hs' ),
+				'name' => __( 'Horizontal Sub-menu Settings', 'pp-hs' ),
 				'type' => 'subheading'
 		);
 
@@ -168,7 +174,13 @@ class Pootlepress_Horizontal_Submenu {
             'type' => 'color'
         );
 
-        return $o;
+
+        $afterName = 'Map Callout Text';
+        $afterType = 'textarea';
+
+        global $PCO;
+        $PCO->add_options($afterName, $afterType, $o);
+
 	} // End add_theme_options()
 
     public function option_css() {
