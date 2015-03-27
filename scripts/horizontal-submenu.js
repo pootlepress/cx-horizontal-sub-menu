@@ -6,7 +6,7 @@
 
     $(document).ready(function () {
 
-
+/*
         $('#navigation ul.nav > .menu-item').each(function () {
             $(this).hover(function () {
                 var $subMenu = $(this).find('.sub-menu');
@@ -24,7 +24,7 @@
                 }
             });
         });
-
+*/
         var navHeight = $('#navigation').outerHeight(false);
 
         var navBorderTop = $('#navigation').css('border-top-width');
